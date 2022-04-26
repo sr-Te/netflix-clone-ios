@@ -8,25 +8,6 @@
 import UIKit
 
 class HeroHeaderUIView: UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(heroImageView)
-        addGradient()
-        addSubview(playButton)
-        addSubview(downloadButton)
-        applyConstrains()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        heroImageView.frame = bounds
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-
     private let downloadButton: UIButton = {
         let button = UIButton()
         button.setTitle("Download", for: .normal)
@@ -67,6 +48,15 @@ class HeroHeaderUIView: UIView {
         layer.addSublayer(gradientLayer)
     }
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(heroImageView)
+        addGradient()
+        addSubview(playButton)
+        addSubview(downloadButton)
+        applyConstrains()
+    }
+
     private func applyConstrains() {
         let playButtonConstrains = [
             playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
@@ -82,5 +72,20 @@ class HeroHeaderUIView: UIView {
 
         NSLayoutConstraint.activate(playButtonConstrains)
         NSLayoutConstraint.activate(downloadButtonConstrains)
+    }
+
+    public func configure(with model: TitleViewModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model.posterURL)") else { return }
+        heroImageView.sd_setImage(with: url)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        heroImageView.frame = bounds
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError()
     }
 }

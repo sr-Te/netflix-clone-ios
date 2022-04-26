@@ -72,7 +72,7 @@ class TitlePreviewViewController: UIViewController {
         let overviewLabelConstrains = [
             overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
             overviewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            overviewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20)
+            overviewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ]
 
         let downloadButtonConstrains = [
