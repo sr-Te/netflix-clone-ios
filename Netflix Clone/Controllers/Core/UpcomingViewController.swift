@@ -53,7 +53,28 @@ class UpcomingViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 
-extension UpcomingViewController: UITableViewDelegate {}
+extension UpcomingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let title = titles[indexPath.row]
+
+        guard let titleName = title.original_title else { return }
+
+        APICaller.shared.getMovie(with: titleName) { [weak self] result in
+            switch result {
+            case .success(let videoElement):
+                DispatchQueue.main.async {
+                    let vc = TitlePreviewViewController()
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtuberView: videoElement, titleOverview: title.overview ?? ""))
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
 
 // MARK: - UITableViewDataSource
 
