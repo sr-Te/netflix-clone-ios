@@ -6,9 +6,9 @@
 ![Swift](https://img.shields.io/badge/swift-F54A2A?style=flat&logo=swift&logoColor=white)
 ![Xcode](https://img.shields.io/badge/Xcode-007ACC?style=flat&logo=Xcode&logoColor=white)
 
-## Introduction
+This is a Netflix clone application, which I managed to do following [this tutorial](https://www.youtube.com/watch?v=KCgYDCKqato).
 
-This is a Netflix clone application, which I managed to do following [this tutorial](https://www.youtube.com/watch?v=KCgYDCKqato). In the following document I intend to teach some key things that I learned, so as not to forget them in the future and for those who may find it useful.
+I learned a bit about the mvvm architecture, the delegate pattern, how to use the notification center to be able to communicate between two controllers and to save data in a local database.
 
 ## Preview
 
